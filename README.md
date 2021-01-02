@@ -2,6 +2,22 @@
 
 A command-line tool to produce a plot of a year's reading on Goodreads.
 
+### Usage
+
+#### Generating the initial CSV
+
+The Makefile does the initial work to generate a CSV file of the user's
+reading. It takes two variables:
+
+1. `GOODREADS_ID` - Goodreads user ID. Defaults to mine (4625510).
+2. `GOODREADS_KEY` - Goodreads API key. No sensible default possible.
+
+```shell
+make goodreads.csv GOODREADS_KEY=$GOODREADS_KEY
+```
+
+Will generate a `goodreads.csv` file.
+
 ### Goodreads exports
 
 Goodreads are [removing their API support][api], and recommend using their
