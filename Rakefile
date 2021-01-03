@@ -1,4 +1,6 @@
+require 'csv'
 require 'open-uri'
+require './lib/stats'
 require './lib/word_count'
 
 directory 'output'
@@ -28,4 +30,16 @@ file 'output/goodreads.csv' => ['output/goodreads.xml'] do
       .map(&WordCount.method(:append_word_count))
       .each { |r| csv << r }
   end
+end
+
+file 'output/chart.png' => ['output/goodreads-filled.csv'] do
+  stats.chart
+end
+
+file :stats => ['output/goodreads-filled.csv'] do
+  puts stats.basic
+end
+
+def stats
+  @stats ||= Stats.new
 end

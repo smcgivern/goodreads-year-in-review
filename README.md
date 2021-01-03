@@ -43,8 +43,35 @@ blank cell in the word count column.
 3. Add columns for whether the author is a cis male and whether the book
    was translated. Both have Y for yes, N for no.
 
+#### Generating statistics
 
-### Goodreads exports
+The `output/chart.png` task generates a line chart of words read per day
+across all books by averaging the total word count of each book between
+its started and finished dates.
+
+The `stats` task prints some summary statistics.
+
+```shell
+$ bundle exec rake stats output/chart.png
+Total words / books: 10,402,523 / 102
+Mean / median: 101,986 / 80,441
+
+Shortest: 20,589 - R.U.R. (Karel Čapek)
+Longest five:
+- 332,589 - Jonathan Strange & Mr Norrell (Susanna Clarke)
+- 316,455 - The Mirror & the Light (Hilary Mantel)
+- 264,519 - An Instance of the Fingerpost (Iain Pears)
+- 241,486 - Stone's Fall (Iain Pears)
+- 231,104 - Pawn in Frankincense (Dorothy Dunnett)
+
+Non cis male words / books: 4,959,118 / 48
+Translated words / books: 1,280,915 / 16
+
+Fastest: 65,848 - The Murder on the Links (Agatha Christie)
+Slowest: 57,296 - My First Summer in the Sierra (John Muir)
+```
+
+### Why doesn't this use Goodreads exports?
 
 Goodreads are [removing their API support][api], and recommend using their
 [export] feature instead. I'd love to use the export instead, but I can't, as

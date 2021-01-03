@@ -3,10 +3,15 @@ GEM
   specs:
     ansi (1.5.0)
     ast (2.4.1)
+    gruff (0.12.1)
+      histogram
+      rmagick
+    histogram (0.2.4.1)
     oga (3.3)
       ast
       ruby-ll (~> 2.1)
     rake (13.0.3)
+    rmagick (4.1.2)
     ruby-ll (2.1.2)
       ansi
       ast
@@ -15,6 +20,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  gruff (~> 0.12)
   oga (~> 3.0)
   rake (~> 13.0)
 
