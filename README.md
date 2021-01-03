@@ -24,21 +24,25 @@ reading. It takes two variables:
 3. `GOODREADS_KEY` - Goodreads API key. No sensible default possible.
 
 ```shell
-bundle exec rake goodreads.csv GOODREADS_KEY=abcd
+bundle exec rake output/goodreads.csv GOODREADS_KEY=abcd
 ```
 
-Will generate a `goodreads.csv` file with columns for title, author,
-started date, finished date, and word count.
+Will generate a `goodreads.csv` file in the `output` directory with
+columns for title, author, started date, finished date, and word count.
 
 The word counts will be fetched from the [Kobo store][kobo] by searching
 for the title and author, then picking the first match. Titles that
 didn't appear to match will be printed to standard output and have a
 blank cell in the word count column.
 
-#### Fixing word counts
+#### Amending the data
 
-Copy `goodreads.csv` to `goodreads-filled.csv` and fill in missing word
-counts, correct wrong word counts, correct wrong dates, etc.
+1. Copy `output/goodreads.csv` to `output/goodreads-filled.csv`.
+2. Fix wrong or missing data: particularly word counts, but also dates
+   etc.
+3. Add columns for whether the author is a cis male and whether the book
+   was translated. Both have Y for yes, N for no.
+
 
 ### Goodreads exports
 
