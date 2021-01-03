@@ -2,21 +2,43 @@
 
 A command-line tool to produce a plot of a year's reading on Goodreads.
 
+### Installation
+
+```shell
+git clone https://github.com/smcgivern/goodreads-year-in-review
+cd goodreads-year-in-review
+asdf install
+bundle
+```
+
 ### Usage
 
 #### Generating the initial CSV
 
-The Makefile does the initial work to generate a CSV file of the user's
+The Rakefile does the initial work to generate a CSV file of the user's
 reading. It takes two variables:
 
 1. `GOODREADS_ID` - Goodreads user ID. Defaults to mine (4625510).
-2. `GOODREADS_KEY` - Goodreads API key. No sensible default possible.
+2. `GOODREADS_YEAR` - year to assess. Defaults to the previous calendar
+   year.
+3. `GOODREADS_KEY` - Goodreads API key. No sensible default possible.
 
 ```shell
-make goodreads.csv GOODREADS_KEY=$GOODREADS_KEY
+bundle exec rake goodreads.csv GOODREADS_KEY=abcd
 ```
 
-Will generate a `goodreads.csv` file.
+Will generate a `goodreads.csv` file with columns for title, author,
+started date, finished date, and word count.
+
+The word counts will be fetched from the [Kobo store][kobo] by searching
+for the title and author, then picking the first match. Titles that
+didn't appear to match will be printed to standard output and have a
+blank cell in the word count column.
+
+#### Fixing word counts
+
+Copy `goodreads.csv` to `goodreads-filled.csv` and fill in missing word
+counts, correct wrong word counts, correct wrong dates, etc.
 
 ### Goodreads exports
 
