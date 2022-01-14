@@ -22,7 +22,7 @@ module WordCount
       title, author, started, finished = row
       search_result =
         Oga
-          .parse_html(URI.open("#{SEARCH_BASE}#{CGI.escape(title)}+#{CGI.escape(author)}"))
+          .parse_html(URI.open("#{SEARCH_BASE}#{CGI.escape(title)}+#{CGI.escape(author)}", 'User-Agent' => 'curl/7.77.0', read_timeout: 10))
           .css('.item-detail')
           .first
 
