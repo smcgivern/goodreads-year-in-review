@@ -26,7 +26,7 @@ file 'output/goodreads.csv' => ['output/goodreads.xml'] do
       .parse_xml(open('output/goodreads.xml'))
       .css('GoodreadsResponse reviews review')
       .map(&WordCount.method(:review_to_row))
-      .select { |r| r.last&.start_with?('2020-') }
+      .select { |r| r.last&.start_with?("#{goodreads_year}-") }
       .map(&WordCount.method(:append_word_count))
       .each { |r| csv << r }
   end
