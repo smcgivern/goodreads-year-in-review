@@ -3,26 +3,45 @@ GEM
   specs:
     ansi (1.5.0)
     ast (2.4.1)
-    gruff (0.12.1)
+    base64 (0.2.0)
+    gruff (0.24.0)
       histogram
-      rmagick
+      rmagick (>= 5.3)
     histogram (0.2.4.1)
+    logger (1.6.0)
+    observer (0.1.2)
     oga (3.3)
       ast
       ruby-ll (~> 2.1)
+    pkg-config (1.5.6)
     rake (13.0.3)
-    rmagick (4.1.2)
+    rexml (3.3.0)
+      strscan
+    rmagick (5.4.4)
+      observer (~> 0.1)
+      pkg-config (~> 1.4)
     ruby-ll (2.1.2)
       ansi
       ast
+    rubyzip (2.3.2)
+    selenium-webdriver (4.22.0)
+      base64 (~> 0.2)
+      logger (~> 1.4)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
+    strscan (3.1.0)
+    websocket (1.2.10)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  gruff (~> 0.12)
+  gruff (~> 0.23)
   oga (~> 3.0)
   rake (~> 13.0)
+  rmagick (= 5.4.4)
+  selenium-webdriver (~> 4.22)
 
 BUNDLED WITH
-   2.1.4
+   2.2.32

@@ -22,13 +22,17 @@ file 'output/goodreads.csv' => ['output/goodreads.xml'] do
   CSV.open('output/goodreads.csv', 'wb') do |csv|
     csv << ['Title', 'Author', 'Started', 'Finished', 'Word count']
 
-    Oga
-      .parse_xml(open('output/goodreads.xml'))
-      .css('GoodreadsResponse reviews review')
-      .map(&WordCount.method(:review_to_row))
-      .select { |r| r.last&.start_with?("#{goodreads_year}-") }
-      .map(&WordCount.method(:append_word_count))
-      .each { |r| csv << r }
+    begin
+      Oga
+        .parse_xml(open('output/goodreads.xml'))
+        .css('GoodreadsResponse reviews review')
+        .map(&WordCount.method(:review_to_row))
+        .select { |r| r.last&.start_with?("#{goodreads_year}-") }
+        .map(&WordCount.method(:append_word_count))
+        .each { |r| csv << r }
+    ensure
+      WordCount.driver.close
+    end
   end
 end
 
